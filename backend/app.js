@@ -51,6 +51,19 @@ app.use((req, res) => {
     next(error);
 });
 
-app.listen(port);
+mongoose
+    .connect(
+        'mongodb+srv://mscbr:' +
+            process.env.MONGO_ATLAS_PW +
+            '@cluster0-1san1.mongodb.net/events_test?retryWrites=true&w=majority'
+    )
+    .then(() => {
+        console.log('Connected to the db.');
+        console.log(`Connecting on port: ${port}`);
+        app.listen(port);
+    })
+    .catch(() => {
+        console.log('Connection to the db failed!');
+    });
 
 module.exports = app;
