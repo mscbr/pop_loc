@@ -1,12 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const eventsRoutes = require('./routes/events');
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(morgan('dev'));
 app.use(express.json()); // body-parser
+
+app.use('/events', eventsRoutes);
 
 // CORS policy
 app.use((req, res, next) => {
