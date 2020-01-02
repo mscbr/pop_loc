@@ -5,8 +5,37 @@ const mongoose = require('mongoose');
 const getCoordsForAddress = require('../util/location');
 
 exports.getEvents = async (req, res) => {
-    const events = await Event.find().exec();
+    const events = await Event.find();
     res.status(200).json(events);
+};
+
+exports.getEventById = async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) throw new HttpError('Invalid inputs passed', 422);
+
+    const { eventId } = req.params;
+    let event;
+
+    try {
+        event = await Event.findById(eventId).exec();
+    } catch (err) {
+        const error = new HttpError(
+            'Something went wrong, could not find an event',
+            500
+        );
+        return next(error);
+    }
+
+    if (!event) {
+        const error = new HttpError(
+            'Could not find a pace for provided id.',
+            404
+        );
+        return next(error);
+    }
+
+    // getters: true - mongoose adds "id:", apart from "_id:"
+    return res.status(200).json({ event: event.toObject({ getters: true }) });
 };
 
 exports.createEvent = async (req, res, next) => {
