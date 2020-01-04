@@ -20,7 +20,7 @@ const eventSchema = mongoose.Schema({
     attendance: [String],
     tags: [String],
     createdBy: String,
-    createdAt: Date
+    createdAt: { type: Date, default: new Date() }
 });
 
 module.exports = mongoose.model('Event', eventSchema);
