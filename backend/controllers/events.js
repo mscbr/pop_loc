@@ -45,7 +45,7 @@ exports.getEventsByUserId = async (req, res, next) => {
         events = await Event.find({ createdBy: userId });
     } catch (err) {
         const error = new HttpError(
-            'Fetching places failed, please try again later.',
+            'Fetching events failed, please try again later.',
             500
         );
         return next(error);
@@ -54,17 +54,53 @@ exports.getEventsByUserId = async (req, res, next) => {
     if (!events || events.length === 0) {
         return next(
             new HttpError(
-                'Could not find places for the provided user id.',
+                'Could not find events for the provided user id.',
                 404
             )
         );
     }
 
-    return res
-        .status(200)
-        .json({
-            events: events.map(event => event.toObject({ getters: true }))
-        });
+    return res.status(200).json({
+        events: events.map(event => event.toObject({ getters: true }))
+    });
+};
+
+exports.getEventsByMultiple = async (req, res, next) => {
+    const searchParams = req.params.search
+        .split('+')
+        .join(' ')
+        .toLowerCase();
+    const searchRegex = new RegExp(searchParams, 'ig');
+    console.log('search params', searchParams);
+    let events;
+    try {
+        events = await Event.find({}).or([
+            { title: searchRegex },
+            { description: searchRegex },
+            { tags: searchRegex }
+        ]);
+    } catch (err) {
+        return next(
+            new HttpError(
+                'Fetching events failed, please try again later.',
+                404
+            )
+        );
+    }
+    console.log('events', events);
+    if (!events || events.length === 0) {
+        return next(
+            new HttpError(
+                'Could not find events for the provided search parameters.',
+                404
+            )
+        );
+    }
+
+    return res.status(200).json({
+        // getters: true in order to have readable id's
+        events: events.map(event => event.toObject({ getters: true }))
+    });
 };
 
 exports.createEvent = async (req, res, next) => {
