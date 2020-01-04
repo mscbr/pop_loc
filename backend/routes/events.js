@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/', eventsController.getEvents);
 router.get('/:eventId', eventsController.getEventById);
+router.get('/user/:uid', eventsController.getEventsByUserId);
 router.post(
     '/',
     [

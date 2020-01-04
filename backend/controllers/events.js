@@ -17,7 +17,7 @@ exports.getEventById = async (req, res, next) => {
     let event;
 
     try {
-        event = await Event.findById(eventId).exec();
+        event = await Event.findById(eventId);
     } catch (err) {
         const error = new HttpError(
             'Something went wrong, could not find an event',
@@ -36,6 +36,35 @@ exports.getEventById = async (req, res, next) => {
 
     // getters: true - mongoose adds "id:", apart from "_id:"
     return res.status(200).json({ event: event.toObject({ getters: true }) });
+};
+
+exports.getEventsByUserId = async (req, res, next) => {
+    const userId = req.params.uid;
+    let events;
+    try {
+        events = await Event.find({ createdBy: userId });
+    } catch (err) {
+        const error = new HttpError(
+            'Fetching places failed, please try again later.',
+            500
+        );
+        return next(error);
+    }
+
+    if (!events || events.length === 0) {
+        return next(
+            new HttpError(
+                'Could not find places for the provided user id.',
+                404
+            )
+        );
+    }
+
+    return res
+        .status(200)
+        .json({
+            events: events.map(event => event.toObject({ getters: true }))
+        });
 };
 
 exports.createEvent = async (req, res, next) => {
