@@ -6,14 +6,16 @@ const getCoordsForAddress = require('../util/location');
 
 exports.getEvents = async (req, res) => {
     const events = await Event.find();
-    res.status(200).json(events);
+    res.status(200).json(
+        events.map(event => event.toObject({ getters: true }))
+    );
 };
 
 exports.getEventById = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) throw new HttpError('Invalid inputs passed', 422);
 
-    const { eventId } = req.params;
+    const eventId = req.params.eid;
     let event;
 
     try {
@@ -70,16 +72,19 @@ exports.getEventsByMultiple = async (req, res, next) => {
         .split('+')
         .join(' ')
         .toLowerCase();
+    // regex flags - case insensitive + global search
     const searchRegex = new RegExp(searchParams, 'ig');
-    console.log('search params', searchParams);
     let events;
+
     try {
+        // regex search in particular fields
         events = await Event.find({}).or([
             { title: searchRegex },
             { description: searchRegex },
             { tags: searchRegex }
         ]);
     } catch (err) {
+        // request failed
         return next(
             new HttpError(
                 'Fetching events failed, please try again later.',
@@ -87,7 +92,8 @@ exports.getEventsByMultiple = async (req, res, next) => {
             )
         );
     }
-    console.log('events', events);
+
+    // if there are no results
     if (!events || events.length === 0) {
         return next(
             new HttpError(
@@ -143,4 +149,49 @@ exports.createEvent = async (req, res, next) => {
     }
 
     res.status(201).json({ event: createdEvent });
+};
+
+exports.updateEvent = async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) throw new HttpError('Invalid inputs passed.', 422);
+
+    const eventId = req.params.eid;
+    const {
+        title,
+        description,
+        picture,
+        location,
+        date,
+        price,
+        tags
+    } = req.body;
+
+    let event;
+
+    try {
+        event = await Event.findById(eventId);
+    } catch (err) {
+        // request failed
+        return next(
+            new HttpError('Something went wrong, could not update place.', 500)
+        );
+    }
+
+    event.title = title || event.title;
+    event.description = description || event.description;
+    event.picture = picture || event.picture;
+    event.location = location || event.location;
+    event.date = date || event.date;
+    event.price = price || event.price;
+    event.tags = tags || event.tags;
+
+    try {
+        await event.save();
+    } catch (err) {
+        return next(
+            new HttpError('Something went wrong, could not update place.', 500)
+        );
+    }
+
+    res.status(200).json({ event: event.toObject({ getters: true }) });
 };
