@@ -195,3 +195,26 @@ exports.updateEvent = async (req, res, next) => {
 
     res.status(200).json({ event: event.toObject({ getters: true }) });
 };
+
+exports.deleteEvent = async (req, res, next) => {
+    const eventId = req.params.eid;
+
+    let event;
+    try {
+        event = await Event.findById(eventId);
+    } catch (err) {
+        return next(
+            new HttpError('Something went wrong, could not delete place.', 500)
+        );
+    }
+
+    try {
+        await event.remove();
+    } catch (err) {
+        return next(
+            new HttpError('Something went wrong, could not delete place.', 500)
+        );
+    }
+
+    res.status(200).json({ message: 'Deleted place.' });
+};

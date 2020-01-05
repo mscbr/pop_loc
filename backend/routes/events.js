@@ -18,5 +18,6 @@ router.post(
     ],
     eventsController.createEvent
 );
+router.delete('/:eid', eventsController.deleteEvent);
 
 module.exports = router;
