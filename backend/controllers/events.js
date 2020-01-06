@@ -127,7 +127,7 @@ exports.createEvent = async (req, res, next) => {
     const createdEvent = new Event({
         title,
         description,
-        picture:
+        image:
             'https://simplyenglishedinburgh.com/wp-content/uploads/2019/07/iStock-667709450.jpg',
         location: getCoordsForAddress(address),
         date,
@@ -156,15 +156,7 @@ exports.updateEvent = async (req, res, next) => {
     if (!errors.isEmpty()) throw new HttpError('Invalid inputs passed.', 422);
 
     const eventId = req.params.eid;
-    const {
-        title,
-        description,
-        picture,
-        location,
-        date,
-        price,
-        tags
-    } = req.body;
+    const { title, description, image, location, date, price, tags } = req.body;
 
     let event;
 
@@ -179,7 +171,7 @@ exports.updateEvent = async (req, res, next) => {
 
     event.title = title || event.title;
     event.description = description || event.description;
-    event.picture = picture || event.picture;
+    event.image = image || event.image;
     event.location = location || event.location;
     event.date = date || event.date;
     event.price = price || event.price;
