@@ -4,15 +4,14 @@ const { validationResult } = require('express-validator');
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
 
-exports.signup = async (res, req, next) => {
+exports.signup = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
-        throw new HttpError(
-            'Invalid inputs passed, please check your data.',
-            422
+        next(
+            new HttpError('Invalid inputs passed, please check your data.', 422)
         );
 
-    const { username, email, password, image } = req.body;
+    const { username, email, password } = req.body;
 
     let existingUser;
     try {
@@ -24,7 +23,7 @@ exports.signup = async (res, req, next) => {
     }
 
     // if user exist
-    if (!existingUser) {
+    if (existingUser) {
         return next(
             new HttpError('User exists already, please login instead.', 422)
         );
