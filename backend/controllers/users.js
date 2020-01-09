@@ -4,6 +4,21 @@ const { validationResult } = require('express-validator');
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
 
+exports.getUsers = async (req, res, next) => {
+    // fetching user data but password
+    let users;
+    try {
+        users = await User.find({}, '-password');
+    } catch (err) {
+        return next(
+            new HttpError('Fetching users failed, please try again later', 500)
+        );
+    }
+    res.status(200).json({
+        users: users.map(user => user.toObject({ getters: true }))
+    });
+};
+
 exports.signup = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
