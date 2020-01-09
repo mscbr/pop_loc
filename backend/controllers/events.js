@@ -13,7 +13,10 @@ exports.getEvents = async (req, res) => {
 
 exports.getEventById = async (req, res, next) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) throw new HttpError('Invalid inputs passed', 422);
+    if (!errors.isEmpty())
+        next(
+            new HttpError('Invalid inputs passed, please check your data.', 422)
+        );
 
     const eventId = req.params.eid;
     let event;
@@ -111,7 +114,10 @@ exports.getEventsByMultiple = async (req, res, next) => {
 
 exports.createEvent = async (req, res, next) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) throw new HttpError('Invalid inputs passed.', 422);
+    if (!errors.isEmpty())
+        next(
+            new HttpError('Invalid inputs passed, please check your data.', 422)
+        );
 
     const {
         title,
@@ -153,7 +159,10 @@ exports.createEvent = async (req, res, next) => {
 
 exports.updateEvent = async (req, res, next) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) throw new HttpError('Invalid inputs passed.', 422);
+    if (!errors.isEmpty())
+        next(
+            new HttpError('Invalid inputs passed, please check your data.', 422)
+        );
 
     const eventId = req.params.eid;
     const { title, description, image, location, date, price, tags } = req.body;
