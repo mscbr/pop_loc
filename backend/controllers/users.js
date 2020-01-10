@@ -50,6 +50,7 @@ exports.signup = async (req, res, next) => {
         password,
         image:
             'https://simplyenglishedinburgh.com/wp-content/uploads/2019/07/iStock-667709450.jpg',
+        events: [],
         attending: []
     });
 

@@ -17,9 +17,11 @@ const eventSchema = mongoose.Schema({
         to: Date
     },
     price: Number,
-    attendance: [String],
+    attendance: [
+        { type: mongoose.Types.ObjectId, required: true, ref: 'User' }
+    ],
     tags: [String],
-    createdBy: String,
+    createdBy: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
     createdAt: { type: Date, default: new Date() }
 });
 
