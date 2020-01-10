@@ -226,15 +226,27 @@ exports.deleteEvent = async (req, res, next) => {
 
     let event;
     try {
-        event = await Event.findById(eventId);
+        event = await Event.findById(eventId).populate('createdBy');
     } catch (err) {
         return next(
             new HttpError('Something went wrong, could not delete place.', 500)
         );
     }
 
+    if (!event) {
+        return next(new HttpError('Could not find event for provided id', 404));
+    }
+
     try {
-        await event.remove();
+        //await event.remove();
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        await event.remove({ session });
+        // deleting and event from array in user
+        event.createdBy.events.pull(event);
+        // saving user
+        await event.createdBy.save({ session });
+        await session.commitTransaction();
     } catch (err) {
         return next(
             new HttpError('Something went wrong, could not delete place.', 500)
