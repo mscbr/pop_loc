@@ -4,6 +4,7 @@ const eventSchema = mongoose.Schema({
     title: { type: String, required: true },
     description: String,
     image: String,
+    address: String,
     location: {
         lat: { type: Number, required: false },
         lng: { type: Number, required: false }
