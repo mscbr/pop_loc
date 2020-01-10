@@ -58,7 +58,7 @@ exports.signup = async (req, res, next) => {
         await createdUser.save();
     } catch (err) {
         const error = new HttpError(
-            'Creating user failed, please try again.',
+            'Saving user failed, please try again.',
             500
         );
         return next(error);

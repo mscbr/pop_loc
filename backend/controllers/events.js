@@ -1,4 +1,5 @@
 const Event = require('../models/event');
+const User = require('../models/user');
 const { validationResult } = require('express-validator');
 const HttpError = require('../models/http-error');
 const mongoose = require('mongoose');
@@ -135,7 +136,7 @@ exports.createEvent = async (req, res, next) => {
         description,
         image:
             'https://simplyenglishedinburgh.com/wp-content/uploads/2019/07/iStock-667709450.jpg',
-        location: getCoordsForAddress(address),
+        location: await getCoordsForAddress(address),
         date,
         price,
         attendandce: [],
@@ -144,8 +145,26 @@ exports.createEvent = async (req, res, next) => {
         createdAt
     });
 
+    let user;
     try {
-        await createdEvent.save();
+        user = await User.findById(createdBy);
+    } catch (err) {
+        return next(
+            new HttpError('Creating place failed, please try again', 500)
+        );
+    }
+
+    if (!user) {
+        return next(new HttpError('Could not find user for provided id', 404));
+    }
+
+    try {
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        await createdEvent.save({ session });
+        user.events.push(createdEvent); // only adds event id
+        await user.save({ session });
+        await session.commitTransaction(); // save
     } catch (err) {
         const error = new HttpError(
             'Creating place failed, please try again.',
