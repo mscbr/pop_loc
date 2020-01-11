@@ -1,14 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Route,
+    Redirect,
+    Switch
+} from 'react-router-dom';
 import Users from './user/pages/Users';
 import './App.css';
 
 const App: React.FC = () => {
     return (
         <Router>
-            <Route path="/">
-                <Users />
-            </Route>
+            <Switch>
+                <Route path="/" exact>
+                    <Users />
+                </Route>
+                {/* if nothing is matched redirect to '/' */}
+                <Redirect to="/" />
+            </Switch>
         </Router>
     );
 };
