@@ -5,9 +5,10 @@ const eventsController = require('../controllers/events');
 const router = express.Router();
 
 router.get('/', eventsController.getEvents);
+// search?params=
+router.get('/search', eventsController.getEventsByMultiple);
 router.get('/:eid', eventsController.getEventById);
 router.get('/user/:uid', eventsController.getEventsByUserId);
-router.get('/search/:search', eventsController.getEventsByMultiple);
 router.patch('/:eid', eventsController.updateEvent);
 router.post(
     '/',

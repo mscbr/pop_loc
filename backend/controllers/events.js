@@ -72,10 +72,11 @@ exports.getEventsByUserId = async (req, res, next) => {
 };
 
 exports.getEventsByMultiple = async (req, res, next) => {
-    const searchParams = req.params.search
+    const searchParams = req.query.params
         .split('+')
         .join(' ')
         .toLowerCase();
+    console.log('search params', searchParams);
     // regex flags - case insensitive + global search
     const searchRegex = new RegExp(searchParams, 'ig');
     let events;
