@@ -4,11 +4,12 @@ import UserItem from './UserItem';
 import './UsersList.css';
 
 interface Props {
-    items: [
-        {
-            id: string;
-        }
-    ];
+    items: {
+        id: string;
+        username: string;
+        image: string;
+        events: string[];
+    }[];
 }
 
 const UsersList: React.FC<Props> = props => {
@@ -24,7 +25,12 @@ const UsersList: React.FC<Props> = props => {
         <React.Fragment>
             <ul>
                 {props.items.map(user => (
-                    <UserItem key={user.id} />
+                    <UserItem
+                        key={user.id}
+                        username={user.username}
+                        image={user.image}
+                        events={user.events}
+                    />
                 ))}
             </ul>
         </React.Fragment>
