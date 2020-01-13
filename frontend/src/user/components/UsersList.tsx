@@ -23,7 +23,7 @@ const UsersList: React.FC<Props> = props => {
 
     return (
         <React.Fragment>
-            <ul>
+            <ul className="users-list">
                 {props.items.map(user => (
                     <UserItem
                         key={user.id}
