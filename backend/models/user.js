@@ -9,16 +9,7 @@ const userSchema = new Schema({
     password: { type: String, required: true, minlength: 6 },
     image: { type: String },
     events: { type: [mongoose.Types.ObjectId], ref: 'Event' },
-    attending: { type: [String] },
-    requests: {
-        type: [
-            {
-                event: { type: mongoose.Types.ObjectId, ref: 'Event' },
-                pending: Boolean,
-                accepted: Boolean
-            }
-        ]
-    }
+    attending: { type: [String] }
 });
 
 userSchema.plugin(uniqueValidator);

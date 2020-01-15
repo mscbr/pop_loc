@@ -142,6 +142,7 @@ exports.createEvent = async (req, res, next) => {
         location: await getCoordsForAddress(address),
         date,
         price,
+        requests: [],
         attendandce: [],
         tags,
         createdBy,
