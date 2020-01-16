@@ -1,6 +1,4 @@
 import React from 'react';
-import { List } from '@material-ui/core';
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 
 import UserItem from './UserItem';
 import './UsersList.css';
@@ -13,24 +11,12 @@ interface Props {
         events: {
             id: string;
             title: string;
+            image: string;
         }[];
     }[];
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        list: {
-            display: 'flex',
-            flexDirection: 'column',
-            width: 400,
-            margin: '0 auto'
-        }
-    })
-);
-
 const UsersList: React.FC<Props> = props => {
-    const classes = useStyles();
-
     if (!props.items.length) {
         return (
             <div className="center">
@@ -41,16 +27,17 @@ const UsersList: React.FC<Props> = props => {
 
     return (
         <React.Fragment>
-            <List className={classes.list}>
+            <ul>
                 {props.items.map(user => (
                     <UserItem
                         key={user.id}
+                        id={user.id}
                         username={user.username}
                         image={user.image}
                         events={user.events}
                     />
                 ))}
-            </List>
+            </ul>
         </React.Fragment>
     );
 };
