@@ -10,7 +10,10 @@ interface Props {
         id: string;
         username: string;
         image: string;
-        events: string[];
+        events: {
+            id: string;
+            title: string;
+        }[];
     }[];
 }
 
