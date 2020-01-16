@@ -11,7 +11,7 @@ import {
     Avatar
 } from '@material-ui/core';
 
-interface Props {
+export interface Props {
     username: string;
     image: string;
     events: {
