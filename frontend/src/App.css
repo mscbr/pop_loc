@@ -29,7 +29,7 @@
 }
 /*TEMPORARY STYLES*/
 body {
-    background: #a113ff;
+    background: rgba(43, 19, 255, 0.8);
 }
 
 @keyframes App-logo-spin {
