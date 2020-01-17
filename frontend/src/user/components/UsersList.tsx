@@ -26,7 +26,7 @@ const UsersList: React.FC<Props> = props => {
     }
 
     return (
-        <React.Fragment>
+        <>
             <ul>
                 {props.items.map(user => (
                     <UserItem
@@ -38,7 +38,7 @@ const UsersList: React.FC<Props> = props => {
                     />
                 ))}
             </ul>
-        </React.Fragment>
+        </>
     );
 };
 

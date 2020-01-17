@@ -5,23 +5,33 @@ import {
     Redirect,
     Switch
 } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
 
 import Users from './user/pages/Users';
+import { primary, secondary, accent } from './shared/Styles';
 import './App.css';
 
-const theme = {};
+const GlobalStyle = createGlobalStyle`
+    body {
+        background: ${primary};
+        color: ${secondary};
+    }
+`;
 
 const App: React.FC = () => {
     return (
-        <Router>
-            <Switch>
-                <Route path="/" exact>
-                    <Users />
-                </Route>
-                {/* if nothing is matched redirect to '/' */}
-                <Redirect to="/" />
-            </Switch>
-        </Router>
+        <>
+            <GlobalStyle />
+            <Router>
+                <Switch>
+                    <Route path="/" exact>
+                        <Users />
+                    </Route>
+                    {/* if nothing is matched redirect to '/' */}
+                    <Redirect to="/" />
+                </Switch>
+            </Router>
+        </>
     );
 };
 
