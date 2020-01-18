@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
+import Header from './shared/components/layout/Header';
 import Users from './user/pages/Users';
 import { primary, secondary, accent } from './shared/Styles';
 import './App.css';
@@ -25,7 +26,7 @@ const App: React.FC = () => {
             <Router>
                 <Switch>
                     <Route path="/" exact>
-                        <Users />
+                        <Header />
                     </Route>
                     {/* if nothing is matched redirect to '/' */}
                     <Redirect to="/" />

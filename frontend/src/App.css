@@ -35,6 +35,9 @@ body {
 a {
     text-decoration: none;
 }
+ul {
+    list-style-type: none;
+}
 
 @keyframes App-logo-spin {
     from {
