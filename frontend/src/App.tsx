@@ -7,8 +7,7 @@ import {
 } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
-import Header from './shared/components/layout/Header';
-import Users from './user/pages/Users';
+import Header from './shared/components/navigation/Header';
 import { primary, secondary, accent } from './shared/Styles';
 import './App.css';
 
