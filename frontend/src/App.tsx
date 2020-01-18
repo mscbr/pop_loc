@@ -8,13 +8,14 @@ import {
 import { createGlobalStyle } from 'styled-components';
 
 import Header from './shared/components/navigation/Header';
-import { primary, secondary, accent } from './shared/Styles';
+import { primary, secondary } from './shared/Styles';
 import './App.css';
 
 const GlobalStyle = createGlobalStyle`
     body {
         background: ${primary};
         color: ${secondary};
+        font-family: 'EB Garamond', serif;
     }
 `;
 
