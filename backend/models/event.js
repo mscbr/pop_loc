@@ -27,12 +27,9 @@ const eventSchema = mongoose.Schema({
             }
         ]
     },
-    attendance: [
-        { type: mongoose.Types.ObjectId, required: true, ref: 'User' }
-    ],
     tags: [String],
     createdBy: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
-    createdAt: { type: Date, default: new Date() }
+    createdAt: { type: Date, default: new Date(), required: true }
 });
 
 module.exports = mongoose.model('Event', eventSchema);
