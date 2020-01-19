@@ -16,7 +16,14 @@ const GlobalStyle = createGlobalStyle`
         background: ${primary};
         color: ${secondary};
         font-family: 'EB Garamond', serif;
+        font-size: x-large;
     }
+    @media (max-width: 1000px) {
+        body { font-size: large; }
+      }
+      @media (max-width: 500px) {
+        body { font-size: medium; }
+      }
 `;
 
 const App: React.FC = () => {
