@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
-import { accentFont } from '../../shared/Styles';
+import { primary, secondary, accentFont } from '../../shared/Styles';
 
 import Card from '../../shared/components/ui-elements/Card';
 
 export interface Props {
     title: string;
     description: string;
+    activity: string;
     image: string;
     address: string;
     location: {
@@ -16,8 +17,8 @@ export interface Props {
         lng: number;
     };
     date: {
-        from: string;
-        to?: string;
+        from: Date;
+        to?: Date;
     };
     price?: number;
     requests?: {
@@ -25,26 +26,83 @@ export interface Props {
         pending: boolean;
         accepted: boolean;
     }[];
+    capacity: number;
     tags?: string[];
-    createdBy: string;
-    createdAt: string;
+    createdBy: {
+        id: string;
+        username: string;
+    };
+    createdAt: Date;
 }
 
 const Hour = styled.div`
     color: ${accentFont};
-    font-size: ;
+    font-size: 2em;
+`;
+const Title = styled.div`
+    color: ${primary};
+    span {
+        color: ${accentFont};
+    }
+`;
+// probably should abstract button element
+const Request = styled.div`
+    button {
+        background: ${primary};
+        color: ${secondary};
+        padding: 10px;
+        border-radius: 5px;
+    }
 `;
 
 const EventItem: React.FC<Props> = props => {
+    const {
+        title,
+        description,
+        activity,
+        image,
+        address,
+        location,
+        date,
+        price,
+        requests,
+        capacity,
+        tags,
+        createdBy,
+        createdAt
+    } = props;
+
     return (
         <li>
-            <Link to={'/'}>
-                <Card horizontal>
-                    <div>
-                        <span></span>
-                    </div>
-                </Card>
-            </Link>
+            <Card horizontal>
+                <>
+                    <Hour>
+                        <span>{date.from.getHours()}</span>
+                    </Hour>
+                    <Title>
+                        <Link to={`/`}>
+                            <h2>{title}</h2>
+                        </Link>
+                        <span>{activity}</span>
+                        <Link to={`/`}>
+                            <p>{createdBy.username}</p>
+                        </Link>
+                    </Title>
+                    <Request>
+                        <span>Available spots:</span>
+                        <br />
+                        <span>
+                            {
+                                requests?.filter(request => request.accepted)
+                                    .length
+                            }{' '}
+                            / {capacity}
+                        </span>
+                        <button>Join!</button>
+                    </Request>
+                </>
+            </Card>
         </li>
     );
 };
+export default EventItem;
