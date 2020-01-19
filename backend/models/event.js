@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const eventSchema = mongoose.Schema({
     title: { type: String, required: true },
     description: String,
+    activity: { type: String, required: true },
     image: String,
     address: String,
     location: {
@@ -27,6 +28,7 @@ const eventSchema = mongoose.Schema({
             }
         ]
     },
+    capacity: { type: Number, required: true },
     tags: [String],
     createdBy: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
     createdAt: { type: Date, default: new Date(), required: true }

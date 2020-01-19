@@ -86,6 +86,7 @@ exports.getEventsByMultiple = async (req, res, next) => {
         events = await Event.find({}).or([
             { title: searchRegex },
             { description: searchRegex },
+            { activity: searchRegex },
             { address: searchRegex },
             { tags: searchRegex }
         ]);
@@ -125,9 +126,11 @@ exports.createEvent = async (req, res, next) => {
     const {
         title,
         description,
+        activity,
         address,
         date,
         price,
+        capacity,
         tags,
         createdBy,
         createdAt
@@ -136,6 +139,7 @@ exports.createEvent = async (req, res, next) => {
     const createdEvent = new Event({
         title,
         description,
+        activity,
         image:
             'https://simplyenglishedinburgh.com/wp-content/uploads/2019/07/iStock-667709450.jpg',
         address,
