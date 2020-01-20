@@ -5,7 +5,7 @@ import { secondary, accent2 } from '../../Styles';
 
 interface Props {
     horizontal?: boolean;
-    children: JSX.Element;
+    children: React.ReactNode | JSX.Element[] | JSX.Element;
 }
 
 const StyledCard = styled.div`
@@ -17,6 +17,7 @@ const StyledCard = styled.div`
 `;
 
 const Card: React.FC<Props> = props => {
+    console.log('Card props', props);
     return <StyledCard>{props.children}</StyledCard>;
 };
 export default Card;

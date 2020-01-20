@@ -7,6 +7,7 @@ import { primary, secondary, accentFont } from '../../shared/Styles';
 import Card from '../../shared/components/ui-elements/Card';
 
 export interface Props {
+    id: string;
     title: string;
     description: string;
     activity: string;
@@ -57,6 +58,7 @@ const Request = styled.div`
 
 const EventItem: React.FC<Props> = props => {
     const {
+        id,
         title,
         description,
         activity,
@@ -73,34 +75,29 @@ const EventItem: React.FC<Props> = props => {
     } = props;
 
     return (
-        <li>
+        <li key={`event-item-${id}`}>
             <Card horizontal>
-                <>
-                    <Hour>
-                        <span>{date.from.getHours()}</span>
-                    </Hour>
-                    <Title>
-                        <Link to={`/`}>
-                            <h2>{title}</h2>
-                        </Link>
-                        <span>{activity}</span>
-                        <Link to={`/`}>
-                            <p>{createdBy.username}</p>
-                        </Link>
-                    </Title>
-                    <Request>
-                        <span>Available spots:</span>
-                        <br />
-                        <span>
-                            {
-                                requests?.filter(request => request.accepted)
-                                    .length
-                            }{' '}
-                            / {capacity}
-                        </span>
-                        <button>Join!</button>
-                    </Request>
-                </>
+                <Hour>
+                    <span>{date.from.getHours()}</span>
+                </Hour>
+                <Title>
+                    <Link to={`/`}>
+                        <h2>{title}</h2>
+                    </Link>
+                    <span>{activity}</span>
+                    <Link to={`/`}>
+                        <p>{createdBy.username}</p>
+                    </Link>
+                </Title>
+                <Request>
+                    <span>Available spots:</span>
+                    <br />
+                    <span>
+                        {requests?.filter(request => request.accepted).length} /{' '}
+                        {capacity}
+                    </span>
+                    <button>Join!</button>
+                </Request>
             </Card>
         </li>
     );

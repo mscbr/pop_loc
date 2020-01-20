@@ -18,6 +18,7 @@ const EventList: React.FC<Props> = props => {
         <ul>
             {props.items.map(event => (
                 <EventItem
+                    id={event.id}
                     title={event.title}
                     description={event.description}
                     activity={event.activity}

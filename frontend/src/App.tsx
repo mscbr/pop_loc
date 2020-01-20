@@ -5,11 +5,13 @@ import {
     Redirect,
     Switch
 } from 'react-router-dom';
-import { createGlobalStyle } from 'styled-components';
 
-import Header from './shared/components/navigation/Header';
+import { createGlobalStyle } from 'styled-components';
 import { primary, secondary } from './shared/Styles';
 import './App.css';
+
+import Header from './shared/components/navigation/Header';
+import Events from './events/pages/Events';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -30,10 +32,11 @@ const App: React.FC = () => {
     return (
         <>
             <GlobalStyle />
+            <Header />
             <Router>
                 <Switch>
                     <Route path="/" exact>
-                        <Header />
+                        <Events />
                     </Route>
                     {/* if nothing is matched redirect to '/' */}
                     <Redirect to="/" />
