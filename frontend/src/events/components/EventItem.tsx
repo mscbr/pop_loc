@@ -6,6 +6,8 @@ import { primary, secondary, accentFont } from '../../shared/Styles';
 
 import Card from '../../shared/components/ui-elements/Card';
 
+import { display24time } from '../../helpers/date';
+
 export interface Props {
     id: string;
     title: string;
@@ -39,6 +41,10 @@ export interface Props {
 const Hour = styled.div`
     color: ${accentFont};
     font-size: 2em;
+    span {
+        display: block;
+        margin-top: 50%;
+    }
 `;
 const Title = styled.div`
     color: ${primary};
@@ -75,10 +81,10 @@ const EventItem: React.FC<Props> = props => {
     } = props;
 
     return (
-        <li key={`event-item-${id}`}>
+        <li>
             <Card horizontal>
                 <Hour>
-                    <span>{date.from.getHours()}</span>
+                    <span>{display24time(date.from)}</span>
                 </Hour>
                 <Title>
                     <Link to={`/`}>
