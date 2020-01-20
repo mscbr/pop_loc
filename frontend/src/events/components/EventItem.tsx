@@ -40,13 +40,15 @@ export interface Props {
 
 const Hour = styled.div`
     color: ${accentFont};
-    font-size: 2em;
+    font-size: 1.8em;
+    padding: 10px;
     span {
         display: block;
         margin-top: 50%;
     }
 `;
 const Title = styled.div`
+    flex-grow: 1;
     color: ${primary};
     span {
         color: ${accentFont};
@@ -54,12 +56,23 @@ const Title = styled.div`
 `;
 // probably should abstract button element
 const Request = styled.div`
+    margin-left: auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     button {
         background: ${primary};
         color: ${secondary};
         padding: 10px;
         border-radius: 5px;
     }
+    span {
+        color: ${accentFont};
+    }
+`;
+const ListItem = styled.li`
+    margin: 2px;
 `;
 
 const EventItem: React.FC<Props> = props => {
@@ -81,7 +94,7 @@ const EventItem: React.FC<Props> = props => {
     } = props;
 
     return (
-        <li>
+        <ListItem>
             <Card horizontal>
                 <Hour>
                     <span>{display24time(date.from)}</span>
@@ -96,8 +109,7 @@ const EventItem: React.FC<Props> = props => {
                     </Link>
                 </Title>
                 <Request>
-                    <span>Available spots:</span>
-                    <br />
+                    <span>Spots:</span>
                     <span>
                         {requests?.filter(request => request.accepted).length} /{' '}
                         {capacity}
@@ -105,7 +117,7 @@ const EventItem: React.FC<Props> = props => {
                     <button>Join!</button>
                 </Request>
             </Card>
-        </li>
+        </ListItem>
     );
 };
 export default EventItem;
