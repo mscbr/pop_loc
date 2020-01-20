@@ -17,22 +17,24 @@ const EventList: React.FC<Props> = props => {
     return (
         <ul>
             {props.items.map(event => (
-                <EventItem
-                    id={event.id}
-                    title={event.title}
-                    description={event.description}
-                    activity={event.activity}
-                    image={event.image}
-                    address={event.address}
-                    location={event.location}
-                    date={event.date}
-                    price={event.price}
-                    requests={event.requests}
-                    capacity={event.capacity}
-                    tags={event.tags}
-                    createdBy={event.createdBy}
-                    createdAt={event.createdAt}
-                />
+                <React.Fragment key={`event-item-${event.id}`}>
+                    <EventItem
+                        id={event.id}
+                        title={event.title}
+                        description={event.description}
+                        activity={event.activity}
+                        image={event.image}
+                        address={event.address}
+                        location={event.location}
+                        date={event.date}
+                        price={event.price}
+                        requests={event.requests}
+                        capacity={event.capacity}
+                        tags={event.tags}
+                        createdBy={event.createdBy}
+                        createdAt={event.createdAt}
+                    />
+                </React.Fragment>
             ))}
         </ul>
     );
