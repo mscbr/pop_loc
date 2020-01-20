@@ -11,7 +11,8 @@ interface Props {
 const StyledCard = styled.div`
     display: flex;
     flex-direction: ${(props: Props) => (props.horizontal ? 'row' : 'column')};
-    justify-content: space-around;
+    justify-content: flex-start;
+    align-items: stretch;
     background: ${secondary};
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
