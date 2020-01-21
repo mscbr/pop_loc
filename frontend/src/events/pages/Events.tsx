@@ -5,7 +5,7 @@ import EventList from '../components/EventList';
 const EVENTS = [
     {
         id: '1',
-        title: 'Basketball game',
+        title: 'Hop the ball!',
         description: 'Quick match in the evening on the local court',
         activity: 'Basketball',
         image:
@@ -16,7 +16,7 @@ const EVENTS = [
             lng: -73.9614103
         },
         date: {
-            from: new Date(2019, 11, 24, 10, 33, 30, 0)
+            from: new Date(2019, 11, 24, 18, 12, 30, 0)
         },
         price: 0,
         requests: [
@@ -37,11 +37,11 @@ const EVENTS = [
             id: '5',
             username: 'Johnnny'
         },
-        createdAt: new Date(2019, 11, 23, 10, 33, 30, 0)
+        createdAt: new Date(2019, 11, 23, 7, 33, 30, 0)
     },
     {
         id: '2',
-        title: 'Football game',
+        title: 'Soccer morning',
         description: 'East side vs. west side',
         activity: 'Football',
         image:
@@ -77,7 +77,7 @@ const EVENTS = [
     },
     {
         id: '3',
-        title: 'Ping-pong',
+        title: 'Ping pong',
         description: 'Play with the champion!',
         activity: 'Table-tennis',
         image:
