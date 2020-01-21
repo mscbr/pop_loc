@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { createGlobalStyle } from 'styled-components';
-import { primary, secondary } from './shared/Styles';
+import { primary, secondary, accent2, accentFont } from './shared/Styles';
 import './App.css';
 
 import Header from './shared/components/navigation/Header';
@@ -19,6 +19,15 @@ const GlobalStyle = createGlobalStyle`
         color: ${secondary};
         font-family: 'EB Garamond', serif;
         font-size: x-large;
+        letter-spacing: 1px;
+    }
+    a {
+        text-decoration: none;
+        color: ${accent2};
+        &:hover {
+            color: ${accentFont};
+            transition: 0.2s;
+        }
     }
     @media (max-width: 1000px) {
         body { font-size: large; }
