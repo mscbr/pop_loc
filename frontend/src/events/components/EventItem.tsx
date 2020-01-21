@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
-import { primary, secondary, accentFont } from '../../shared/Styles';
+import { primary, secondary, accentFont, accent } from '../../shared/Styles';
 
 import Card from '../../shared/components/ui-elements/Card';
+import Button from '../../shared/components/ui-elements/Button';
 
 import { display24time } from '../../helpers/date';
 
@@ -42,6 +43,7 @@ const Hour = styled.div`
     color: ${accentFont};
     font-size: 1.8em;
     padding: 10px;
+    margin-right: 5px;
     span {
         display: block;
         margin-top: 50%;
@@ -49,24 +51,20 @@ const Hour = styled.div`
 `;
 const Title = styled.div`
     flex-grow: 1;
-    color: ${primary};
     span {
         color: ${accentFont};
     }
+    padding-left: 20px;
+    border-left: 1px solid ${accent};
+    border-right: 1px solid ${accent};
 `;
 // probably should abstract button element
 const Request = styled.div`
     margin-left: auto;
-    padding: 40px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    button {
-        background: ${primary};
-        color: ${secondary};
-        padding: 10px;
-        border-radius: 5px;
-    }
+    justify-content: space-between;
     span {
         color: ${accentFont};
     }
@@ -101,7 +99,7 @@ const EventItem: React.FC<Props> = props => {
                 </Hour>
                 <Title>
                     <Link to={`/`}>
-                        <h2>{title}</h2>
+                        <h3>{title}</h3>
                     </Link>
                     <span>{activity}</span>
                     <Link to={`/`}>
@@ -114,7 +112,7 @@ const EventItem: React.FC<Props> = props => {
                         {requests?.filter(request => request.accepted).length} /{' '}
                         {capacity}
                     </span>
-                    <button>Join!</button>
+                    <Button text="Join" />
                 </Request>
             </Card>
         </ListItem>
