@@ -11,6 +11,7 @@ import { primary, secondary, accent2, accentFont } from './shared/Styles';
 import './App.css';
 
 import Navigation from './shared/components/navigation/Navigation';
+import SideDrawer from './shared/components/navigation/SideDrawer';
 import Events from './events/pages/Events';
 
 const GlobalStyle = createGlobalStyle`
@@ -43,6 +44,7 @@ const App: React.FC = () => {
             <GlobalStyle />
             <Router>
                 <Navigation />
+                <SideDrawer />
                 <Switch>
                     <Route path="/" exact>
                         <Events />
