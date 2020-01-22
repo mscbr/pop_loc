@@ -58,8 +58,8 @@ const EVENTS = [
         requests: [
             {
                 user: '1',
-                pending: true,
-                accepted: false
+                pending: false,
+                accepted: true
             },
             {
                 user: '2',
@@ -88,14 +88,14 @@ const EVENTS = [
             lng: 14.45295
         },
         date: {
-            from: new Date(2019, 10, 24, 10, 33, 30, 0)
+            from: new Date(2019, 10, 24, 11, 30, 30, 0)
         },
         price: 0,
         requests: [
             {
                 user: '11',
                 pending: false,
-                accepted: true
+                accepted: false
             }
         ],
         capacity: 1,
@@ -104,7 +104,7 @@ const EVENTS = [
             id: '6',
             username: 'Magg'
         },
-        createdAt: new Date(2019, 10, 23, 10, 33, 30, 0)
+        createdAt: new Date(2019, 10, 23, 19, 30, 30, 0)
     }
 ];
 
