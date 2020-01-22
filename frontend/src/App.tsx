@@ -10,7 +10,7 @@ import { createGlobalStyle } from 'styled-components';
 import { primary, secondary, accent2, accentFont } from './shared/Styles';
 import './App.css';
 
-import Header from './shared/components/navigation/Header';
+import Navigation from './shared/components/navigation/Navigation';
 import Events from './events/pages/Events';
 
 const GlobalStyle = createGlobalStyle`
@@ -41,8 +41,8 @@ const App: React.FC = () => {
     return (
         <>
             <GlobalStyle />
-            <Header />
             <Router>
+                <Navigation />
                 <Switch>
                     <Route path="/" exact>
                         <Events />
