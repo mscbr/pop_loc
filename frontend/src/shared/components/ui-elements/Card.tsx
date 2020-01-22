@@ -19,6 +19,7 @@ const StyledCard = styled.div`
 `;
 
 const Card: React.FC<Props> = props => {
+    // shouldn't it be props.horizontal? always horizontal now?
     return <StyledCard horizontal>{props.children}</StyledCard>;
 };
 export default Card;
