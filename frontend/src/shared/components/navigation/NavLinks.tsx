@@ -5,12 +5,36 @@ import { FaBullhorn, FaBasketballBall } from 'react-icons/fa';
 import { FiSettings } from 'react-icons/fi';
 import { IconContext } from 'react-icons';
 
-import { accent2 } from '../../Styles';
+import { primary, secondary, accent2, accentFont } from '../../Styles';
 
 const StyledNavUl = styled.ul`
     display: flex;
     justify-content: space-around;
     width: 300px;
+    li {
+        border-radius: 5px;
+        &:hover {
+            background: ${primary};
+        }
+        transition: 0.2s;
+    }
+`;
+
+const SignIn = styled.span`
+    border: 1px solid ${accentFont};
+    border-radius: 5px;
+    padding: 5px;
+    &:hover {
+        cursor: pointer;
+        background: ${accentFont};
+        color: ${secondary};
+        transition: 0.2s;
+    }
+    &:active {
+        cursor: pointer;
+        background: ${secondary};
+        color: ${accentFont};
+    }
 `;
 
 const NavLinks: React.FC = () => {
@@ -33,6 +57,11 @@ const NavLinks: React.FC = () => {
                 <li>
                     <NavLink to={`/`}>
                         <FiSettings />
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to={`/`}>
+                        <SignIn>Sign in</SignIn>
                     </NavLink>
                 </li>
             </StyledNavUl>
