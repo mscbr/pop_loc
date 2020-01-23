@@ -12,14 +12,20 @@ const Aside = styled.aside`
     z-index: 100;
     height: 100vh;
     width: 50%;
-    backgrond: white;
+    background: ${secondary};
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+`;
+const ColumnNavLinks = styled(NavLinks)`
+    flex-direction: column;
+    li {
+        padding: 20px;
+    }
 `;
 
 const SideDrawer: React.FC = () => {
     return (
         <Aside>
-            <NavLinks column />
+            <ColumnNavLinks />
         </Aside>
     );
 };

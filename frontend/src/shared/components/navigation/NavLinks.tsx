@@ -8,12 +8,11 @@ import { IconContext } from 'react-icons';
 import { primary, secondary, accent2, accentFont } from '../../Styles';
 
 interface Props {
-    column?: boolean;
+    className?: string;
 }
 
 const StyledNavUl = styled.ul`
     display: flex;
-    flex-direction: ${(props: Props) => (props.column ? 'column' : 'row')};
     justify-content: space-around;
     width: 300px;
     li {
@@ -43,11 +42,12 @@ const SignIn = styled.span`
 `;
 
 const NavLinks: React.FC<Props> = props => {
-    const { column } = props;
+    const { className } = props;
+    console.log('NavLinks props', props);
     return (
         <IconContext.Provider value={{ color: accent2 }}>
-            <StyledNavUl column>
-                <li>
+            <StyledNavUl className={className}>
+                <li className={className}>
                     <NavLink to={`/`}>+</NavLink>
                 </li>
                 <li>
