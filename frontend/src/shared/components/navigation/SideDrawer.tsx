@@ -1,8 +1,9 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import { IconContext } from 'react-icons';
 import { AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai';
-import { secondary } from '../../Styles';
+import { secondary, accent } from '../../Styles';
 
 const Aside = styled.aside`
     position: fixed;
@@ -25,6 +26,21 @@ const Aside = styled.aside`
     li,
     button {
         display: none;
+        background: ${accent};
+        opacity: 0.5;
+        padding: 10px;
+        border-radius: 5px;
+        outline: none;
+        &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        transition: 0.3s;
+    }
+    @media only screen and (max-width: 539px) {
+        button {
+            display: initial;
+        }
     }
     transition: 0.3s;
 `;
@@ -37,7 +53,9 @@ const SideDrawer: React.FC<Props> = props => {
     return (
         <Aside>
             <button>
-                <AiOutlineMenuUnfold />
+                <IconContext.Provider value={{ size: '2em' }}>
+                    <AiOutlineMenuUnfold />
+                </IconContext.Provider>
             </button>
             {props.children}
         </Aside>

@@ -14,7 +14,7 @@ const StyledList = styled.ul`
     @media (max-width: 650px) {
         width: 450px;
     }
-    @media (max-width: 490px) {
+    @media (max-width: 540px) {
         width: 350px;
     }
 `;

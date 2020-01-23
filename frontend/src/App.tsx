@@ -32,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     @media (max-width: 1000px) {
         body { font-size: large; }
       }
-    @media (max-width: 500px) {
+    @media (max-width: 540px) {
         body { font-size: medium; }
     }
 `;

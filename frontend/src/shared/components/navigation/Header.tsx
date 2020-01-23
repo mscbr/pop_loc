@@ -28,7 +28,7 @@ const Header = styled.header`
     }
     @media (min-width: 768px) {
     }
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 540px) {
         display: none;
     }
 `;
