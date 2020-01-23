@@ -1,9 +1,8 @@
 import React from 'react';
-import NavLinks from '../navigation/NavLinks';
 
 import styled from 'styled-components';
-import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
-import { primary, secondary, accent } from '../../Styles';
+import { AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai';
+import { secondary } from '../../Styles';
 
 const Aside = styled.aside`
     position: fixed;
@@ -11,21 +10,34 @@ const Aside = styled.aside`
     top: 0;
     z-index: 100;
     height: 100vh;
-    width: 50%;
+    /* width: 40%; */
+    width: 0;
     background: ${secondary};
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-`;
-const ColumnNavLinks = styled(NavLinks)`
-    flex-direction: column;
-    li {
-        padding: 20px;
+    img {
+        width: 120px;
     }
+    div {
+        text-align: center;
+    }
+    img,
+    li {
+        display: none;
+    }
+    transition: 0.3s;
 `;
 
-const SideDrawer: React.FC = () => {
+interface Props {
+    children?: JSX.Element[] | JSX.Element;
+}
+
+const SideDrawer: React.FC<Props> = props => {
     return (
         <Aside>
-            <ColumnNavLinks />
+            <button>
+                <AiOutlineMenuUnfold />
+            </button>
+            {props.children}
         </Aside>
     );
 };

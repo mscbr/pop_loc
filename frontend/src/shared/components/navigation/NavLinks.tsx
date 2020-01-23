@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { FaBullhorn, FaBasketballBall } from 'react-icons/fa';
-import { FiSettings } from 'react-icons/fi';
 import { IconContext } from 'react-icons';
 
-import { primary, secondary, accent2, accentFont } from '../../Styles';
+import { primary, secondary, accent2 } from '../../Styles';
 
 interface Props {
     className?: string;
@@ -14,30 +12,30 @@ interface Props {
 const StyledNavUl = styled.ul`
     display: flex;
     justify-content: space-around;
-    width: 300px;
+    align-items: stretch;
+    margin: 1rem;
     li {
         border-radius: 5px;
+        border: 1px transparent;
+        height: 100%;
+        min-width: 140px;
+        a {
+            padding: 1rem;
+            vertical-align: middle;
+        }
         &:hover {
             background: ${primary};
+            opacity: 0.5;
+            a {
+                color: ${secondary};
+            }
         }
         transition: 0.2s;
     }
-`;
-
-const SignIn = styled.span`
-    border: 1px solid ${accentFont};
-    border-radius: 5px;
-    padding: 5px;
-    &:hover {
-        cursor: pointer;
-        background: ${accentFont};
-        color: ${secondary};
-        transition: 0.2s;
-    }
-    &:active {
-        cursor: pointer;
-        background: ${secondary};
-        color: ${accentFont};
+    @media (max-width: 1000px) {
+        a {
+            font-size: medium;
+        }
     }
 `;
 
@@ -48,27 +46,19 @@ const NavLinks: React.FC<Props> = props => {
         <IconContext.Provider value={{ color: accent2 }}>
             <StyledNavUl className={className}>
                 <li className={className}>
-                    <NavLink to={`/`}>+</NavLink>
+                    <NavLink to={`/`}>ADD GAME</NavLink>
                 </li>
                 <li>
-                    <NavLink to={`/`}>
-                        <FaBasketballBall />
-                    </NavLink>
+                    <NavLink to={`/`}>MY GAMES</NavLink>
                 </li>
                 <li>
-                    <NavLink to={`/`}>
-                        <FaBullhorn />
-                    </NavLink>
+                    <NavLink to={`/`}>NOTIFICATIONS</NavLink>
                 </li>
                 <li>
-                    <NavLink to={`/`}>
-                        <FiSettings />
-                    </NavLink>
+                    <NavLink to={`/`}>SETTINGS</NavLink>
                 </li>
                 <li>
-                    <NavLink to={`/`}>
-                        <SignIn>Sign in</SignIn>
-                    </NavLink>
+                    <NavLink to={`/`}>SIGN IN</NavLink>
                 </li>
             </StyledNavUl>
         </IconContext.Provider>

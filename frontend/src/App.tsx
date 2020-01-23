@@ -11,7 +11,6 @@ import { primary, secondary, accent2, accentFont } from './shared/Styles';
 import './App.css';
 
 import Navigation from './shared/components/navigation/Navigation';
-import SideDrawer from './shared/components/navigation/SideDrawer';
 import Events from './events/pages/Events';
 
 const GlobalStyle = createGlobalStyle`
@@ -34,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
         body { font-size: large; }
       }
     @media (max-width: 500px) {
-    body { font-size: medium; }
+        body { font-size: medium; }
     }
 `;
 
@@ -44,7 +43,6 @@ const App: React.FC = () => {
             <GlobalStyle />
             <Router>
                 <Navigation />
-                <SideDrawer />
                 <Switch>
                     <Route path="/" exact>
                         <Events />
