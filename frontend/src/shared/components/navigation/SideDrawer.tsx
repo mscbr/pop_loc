@@ -11,7 +11,7 @@ const Aside = styled.aside`
     z-index: 100;
     height: 100vh;
     /* width: 40%; */
-    width: 0;
+    width: 0%;
     background: ${secondary};
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     img {
@@ -20,8 +20,10 @@ const Aside = styled.aside`
     div {
         text-align: center;
     }
+    /* hiding all children elements */
     img,
-    li {
+    li,
+    button {
         display: none;
     }
     transition: 0.3s;

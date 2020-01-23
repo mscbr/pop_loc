@@ -15,6 +15,7 @@ const StyledNavUl = styled.ul`
     align-items: stretch;
     margin: 1rem;
     li {
+        text-align: center;
         border-radius: 5px;
         border: 1px transparent;
         height: 100%;
@@ -35,6 +36,15 @@ const StyledNavUl = styled.ul`
     @media (max-width: 1000px) {
         a {
             font-size: medium;
+        }
+    }
+    @media (max-width: 850px) {
+        margin: 1rem 0 1rem 0;
+        li {
+            min-width: 100px;
+            a {
+                padding: 0;
+            }
         }
     }
 `;

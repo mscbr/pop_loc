@@ -11,6 +11,12 @@ interface Props {
 const StyledList = styled.ul`
     width: 600px;
     margin: 50px auto;
+    @media (max-width: 650px) {
+        width: 450px;
+    }
+    @media (max-width: 490px) {
+        width: 350px;
+    }
 `;
 
 const EventList: React.FC<Props> = props => {
