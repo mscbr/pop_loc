@@ -51,7 +51,6 @@ const StyledNavUl = styled.ul`
 
 const NavLinks: React.FC<Props> = props => {
     const { className } = props;
-    console.log('NavLinks props', props);
     return (
         <IconContext.Provider value={{ color: accent2 }}>
             <StyledNavUl className={className}>
