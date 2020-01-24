@@ -11,12 +11,13 @@ const ColumnNavLinks = styled(NavLinks)`
     flex-direction: column;
     align-items: flex-end;
     padding: 0;
-    width: 90%;
+    width: 100%;
     height: 50%;
     font-size: 28px;
     li {
         width: 100%;
         margin-top: 20px;
+        border-radius: 0;
     }
 `;
 
