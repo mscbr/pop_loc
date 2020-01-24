@@ -47,6 +47,14 @@ const Aside = styled.aside`
             display: initial;
         }
     }
+    /* side drawer hidden in wider screens */
+    @media only screen and (min-width: 539px) {
+        width: 0;
+        img,
+        li {
+            display: none;
+        }
+    }
     transition: 0.3s;
 `;
 
