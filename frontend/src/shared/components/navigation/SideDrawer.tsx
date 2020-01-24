@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 import { IconContext } from 'react-icons';
@@ -11,8 +11,7 @@ const Aside = styled.aside`
     top: 0;
     z-index: 100;
     height: 100vh;
-    /* width: 40%; */
-    width: 0%;
+    width: ${(props: { open: boolean }) => (props.open ? '60%' : '0')};
     background: ${secondary};
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     img {
@@ -23,19 +22,25 @@ const Aside = styled.aside`
     }
     /* hiding all children elements */
     img,
-    li,
+    li {
+        display: ${(props: { open: boolean }) =>
+            props.open ? 'initial' : 'none'};
+    }
     button {
         display: none;
-        background: ${accent};
+        background: ${(props: { open: boolean }) =>
+            props.open ? 'transparent' : accent};
+        width: ${(props: { open: boolean }) =>
+            props.open ? '100%' : 'initial'};
         opacity: 0.5;
         padding: 10px;
+        border: none;
         border-radius: 5px;
         outline: none;
         &:hover {
             cursor: pointer;
             opacity: 0.8;
         }
-        transition: 0.3s;
     }
     @media only screen and (max-width: 539px) {
         button {
@@ -50,11 +55,16 @@ interface Props {
 }
 
 const SideDrawer: React.FC<Props> = props => {
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     return (
-        <Aside>
-            <button>
+        <Aside open={isDrawerOpen}>
+            <button onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
                 <IconContext.Provider value={{ size: '2em' }}>
-                    <AiOutlineMenuUnfold />
+                    {isDrawerOpen ? (
+                        <AiOutlineMenuFold />
+                    ) : (
+                        <AiOutlineMenuUnfold />
+                    )}
                 </IconContext.Provider>
             </button>
             {props.children}
