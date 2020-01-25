@@ -12,6 +12,7 @@ const Aside = styled.aside`
     z-index: 100;
     height: 100vh;
     width: ${(props: { open: boolean }) => (props.open ? '60%' : '0')};
+    opacity: ${(props: { open: boolean }) => (props.open ? 1 : 0.6)};
     background: ${secondary};
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     img {
