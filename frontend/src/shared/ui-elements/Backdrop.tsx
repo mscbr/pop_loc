@@ -1,11 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface Props {
     onClick?: () => void;
 }
+const appear = keyframes`
+    0% {
+        opacity: 0;
+    }\
+    100% {
+        opacity: 1;
+    }
+`;
 const StyledBackdrop = styled.div`
     position: fixed;
     top: 0;
@@ -14,6 +21,7 @@ const StyledBackdrop = styled.div`
     height: 100vh;
     background: rgba(0, 0, 0, 0.75);
     z-index: 10;
+    animation: 0.2s ease-out forwards ${appear};
 `;
 
 const Backdrop: React.FC<Props> = props => {
