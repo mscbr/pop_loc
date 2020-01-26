@@ -10,7 +10,7 @@ import { createGlobalStyle } from 'styled-components';
 import { primary, secondary, accent2, accentFont } from './shared/Styles';
 import './App.css';
 
-import Navigation from './shared/components/navigation/Navigation';
+import Navigation from './shared/navigation/Navigation';
 import Events from './events/pages/Events';
 
 const GlobalStyle = createGlobalStyle`

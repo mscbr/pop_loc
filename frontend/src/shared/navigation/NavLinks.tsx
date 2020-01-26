@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 
-import { primary, secondary, accent2 } from '../../Styles';
+import { primary, secondary, accent2 } from '../Styles';
 
 interface Props {
     className?: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { secondary, accent2 } from '../../Styles';
+import { secondary, accent2 } from '../Styles';
 
 interface Props {
     horizontal?: boolean;

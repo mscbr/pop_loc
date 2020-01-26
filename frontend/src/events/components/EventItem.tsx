@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { primary, secondary, accentFont, accent } from '../../shared/Styles';
 
-import Card from '../../shared/components/ui-elements/Card';
-import Button from '../../shared/components/ui-elements/Button';
+import Card from '../../shared/ui-elements/Card';
+import Button from '../../shared/ui-elements/Button';
 
 import { display24time } from '../../helpers/date';
 
