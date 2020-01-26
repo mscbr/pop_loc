@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Backdrop from '../ui-elements/Backdrop';
 
 import styled from 'styled-components';
 import { IconContext } from 'react-icons';
@@ -66,18 +67,23 @@ interface Props {
 const SideDrawer: React.FC<Props> = props => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     return (
-        <Aside open={isDrawerOpen}>
-            <button onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
-                <IconContext.Provider value={{ size: '2em' }}>
-                    {isDrawerOpen ? (
-                        <AiOutlineMenuFold />
-                    ) : (
-                        <AiOutlineMenuUnfold />
-                    )}
-                </IconContext.Provider>
-            </button>
-            {props.children}
-        </Aside>
+        <>
+            {isDrawerOpen && (
+                <Backdrop onClick={() => setIsDrawerOpen(false)} />
+            )}
+            <Aside open={isDrawerOpen}>
+                <button onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
+                    <IconContext.Provider value={{ size: '2em' }}>
+                        {isDrawerOpen ? (
+                            <AiOutlineMenuFold />
+                        ) : (
+                            <AiOutlineMenuUnfold />
+                        )}
+                    </IconContext.Provider>
+                </button>
+                {props.children}
+            </Aside>
+        </>
     );
 };
 
