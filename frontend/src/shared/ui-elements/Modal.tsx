@@ -24,13 +24,13 @@ interface Props {
 }
 
 const Modal: React.FC<Props> = props => {
-    const { children, show, onClose } = props;
-    return show ? (
+    const { children, onClose } = props;
+    return (
         <>
             <Backdrop onClick={onClose} />
             <StyledModal>{children}</StyledModal>
         </>
-    ) : null;
+    );
 };
 
 export default Modal;
