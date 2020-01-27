@@ -12,6 +12,7 @@ import './App.css';
 
 import Navigation from './shared/navigation/Navigation';
 import Events from './events/pages/Events';
+import Modal from './shared/ui-elements/Modal';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -46,6 +47,9 @@ const App: React.FC = () => {
                 <Switch>
                     <Route path="/" exact>
                         <Events />
+                    </Route>
+                    <Route exact path="/modal/:id">
+                        <Modal />
                     </Route>
                     {/* if nothing is matched redirect to '/' */}
                     <Redirect to="/" />

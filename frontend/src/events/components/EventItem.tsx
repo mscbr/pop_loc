@@ -98,7 +98,12 @@ const EventItem: React.FC<Props> = props => {
                     <span>{display24time(date.from)}</span>
                 </Hour>
                 <Title>
-                    <Link to={`/`}>
+                    <Link
+                        to={{
+                            pathname: '/modal/1',
+                            state: { modal: true }
+                        }}
+                    >
                         <h3>{title}</h3>
                     </Link>
                     <span>{activity}</span>
