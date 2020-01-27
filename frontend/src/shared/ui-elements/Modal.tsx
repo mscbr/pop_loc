@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Backdrop from './Backdrop';
 
 import styled from 'styled-components';
@@ -6,14 +6,31 @@ import { secondary } from '../Styles';
 
 const StyledModal = styled.div`
     background: ${secondary};
+    color: black;
+    z-index: 100;
+    position: fixed;
+    top: 22vh;
+    left: 10%;
+    width: 80%;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 5px;
 `;
 
-const Modal: React.FC = (props: any) => {
-    return (
+interface Props {
+    children?: JSX.Element[] | JSX.Element;
+    show?: boolean;
+    onClose?: () => void;
+}
+
+const Modal: React.FC<Props> = props => {
+    const { children, show, onClose } = props;
+    return show ? (
         <>
-            <StyledModal></StyledModal>
+            <Backdrop onClick={onClose} />
+            <StyledModal>{children}</StyledModal>
         </>
-    );
+    ) : null;
 };
 
 export default Modal;
