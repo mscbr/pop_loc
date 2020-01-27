@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import Backdrop from './Backdrop';
 
 import styled from 'styled-components';
@@ -17,20 +18,21 @@ const StyledModal = styled.div`
     border-radius: 5px;
 `;
 
-interface Props {
+interface Props extends RouteComponentProps {
     children?: JSX.Element[] | JSX.Element;
     show?: boolean;
     onClose?: () => void;
 }
 
 const Modal: React.FC<Props> = props => {
-    const { children, onClose } = props;
+    console.log(props);
+    const { children, onClose, history } = props;
     return (
         <>
-            <Backdrop onClick={onClose} />
+            <Backdrop onClick={() => history.goBack()} />
             <StyledModal>{children}</StyledModal>
         </>
     );
 };
 
-export default Modal;
+export default withRouter(Modal);
