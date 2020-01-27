@@ -65,16 +65,14 @@ interface Props {
 }
 
 const SideDrawer: React.FC<Props> = props => {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     return (
         <>
-            {isDrawerOpen && (
-                <Backdrop onClick={() => setIsDrawerOpen(false)} />
-            )}
-            <Aside open={isDrawerOpen}>
-                <button onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
+            {isOpen && <Backdrop onClick={() => setIsOpen(false)} />}
+            <Aside open={isOpen}>
+                <button onClick={() => setIsOpen(!isOpen)}>
                     <IconContext.Provider value={{ size: '2em' }}>
-                        {isDrawerOpen ? (
+                        {isOpen ? (
                             <AiOutlineMenuFold />
                         ) : (
                             <AiOutlineMenuUnfold />
