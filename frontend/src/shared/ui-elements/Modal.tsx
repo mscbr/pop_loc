@@ -20,13 +20,10 @@ const StyledModal = styled.div`
 
 interface Props extends RouteComponentProps {
     children?: JSX.Element[] | JSX.Element;
-    show?: boolean;
-    onClose?: () => void;
 }
 
 const Modal: React.FC<Props> = props => {
-    console.log(props);
-    const { children, onClose, history } = props;
+    const { children, history } = props;
     return (
         <>
             <Backdrop onClick={() => history.goBack()} />
