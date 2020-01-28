@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Route,
-    Redirect,
-    Switch
-} from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import { createGlobalStyle } from 'styled-components';
 import { primary, secondary, accent2, accentFont } from './shared/Styles';
@@ -42,19 +37,17 @@ const App: React.FC = () => {
     return (
         <>
             <GlobalStyle />
-            <Router>
-                <Navigation />
-                <Switch>
-                    <Route path="/" exact>
-                        <Events />
-                    </Route>
-                    <Route exact path="/modal/:id">
-                        <Modal />
-                    </Route>
-                    {/* if nothing is matched redirect to '/' */}
-                    <Redirect to="/" />
-                </Switch>
-            </Router>
+            <Navigation />
+            <Switch>
+                <Route path="/" exact>
+                    <Events />
+                </Route>
+                <Route exact path="/modal/:id">
+                    <Modal />
+                </Route>
+                {/* if nothing is matched redirect to '/' */}
+                <Redirect to="/" />
+            </Switch>
         </>
     );
 };
