@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import { createGlobalStyle } from 'styled-components';
 import { primary, secondary, accent2, accentFont } from './shared/Styles';
@@ -33,21 +33,25 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-const App: React.FC = () => {
+const App: React.FC = props => {
+    console.log('App', props);
     return (
         <>
             <GlobalStyle />
             <Navigation />
-            <Switch>
-                <Route path="/" exact>
-                    <Events />
-                </Route>
-                <Route exact path="/modal/:id">
-                    <Modal />
-                </Route>
-                {/* if nothing is matched redirect to '/' */}
-                <Redirect to="/" />
-            </Switch>
+            <BrowserRouter>
+                <Switch>
+                    {console.log(props)}
+                    <Route path="/" exact>
+                        <Events />
+                    </Route>
+                    <Route exact path="/modal/:id">
+                        <Modal />
+                    </Route>
+                    {/* if nothing is matched redirect to '/' */}
+                    <Redirect to="/" />
+                </Switch>
+            </BrowserRouter>
         </>
     );
 };
