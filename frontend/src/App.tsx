@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Route,
+    Redirect,
+    Switch
+} from 'react-router-dom';
 
 import { createGlobalStyle } from 'styled-components';
 import { primary, secondary, accent2, accentFont } from './shared/Styles';
@@ -7,7 +12,7 @@ import './App.css';
 
 import Navigation from './shared/navigation/Navigation';
 import Events from './events/pages/Events';
-import Modal from './shared/ui-elements/Modal';
+import EventDetails from './events/components/EventDetails';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -34,24 +39,20 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App: React.FC = props => {
-    console.log('App', props);
     return (
         <>
             <GlobalStyle />
-            <Navigation />
-            <BrowserRouter>
+            <Router>
+                <Navigation />
                 <Switch>
-                    {console.log(props)}
                     <Route path="/" exact>
                         <Events />
                     </Route>
-                    <Route exact path="/modal/:id">
-                        <Modal />
-                    </Route>
+                    <Route path="/event/:id" component={EventDetails} />
                     {/* if nothing is matched redirect to '/' */}
                     <Redirect to="/" />
                 </Switch>
-            </BrowserRouter>
+            </Router>
         </>
     );
 };

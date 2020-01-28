@@ -100,7 +100,7 @@ const EventItem: React.FC<Props> = props => {
                 <Title>
                     <Link
                         to={{
-                            pathname: '/modal/1',
+                            pathname: '/event/1',
                             state: { modal: true }
                         }}
                     >
